@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row ">
+    <div class="col-12">
+      <div class="auth__form">
+        <div class="auth__content">
+          <img class="auth__company_logo" src="/assets/img/synk2.jpg" />
+          <div>
+            <h4 class="auth__content__title">Welcome To Synk Dashboard</h4>
+          </div>
+          <div><h4 class="auth__content__text">Sign in to Admin</h4></div>
+        </div>
+        <div>
+          <form [formGroup]="loginForm">
+            <input
+              type="email"
+              formControlName="email"
+              matInput
+              placeholder="Email"
+              class="form-control"
+            />
+            <input
+              type="password"
+              formControlName="password"
+              matInput
+              placeholder="Password"
+              class="form-control"
+            />
+
+            <div class="submit__btn">
+              <app-open-dialog-button
+                [loading]="loading"
+                (isClicked)="login()"
+                name="{{ 'login' | translate }}"
+              >
+              </app-open-dialog-button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

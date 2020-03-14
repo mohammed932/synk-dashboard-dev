@@ -1,0 +1,149 @@
+<div class="panel-header panel-header-sm"></div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card card-user">
+        <div class="card-header">
+          <div class="card-title-container">
+            <h5 class="card-title">{{ "Configurations" | translate }}</h5>
+          </div>
+          <div class="card-action">
+            <app-open-dialog-button
+              isDisabled="sss"
+              name="{{ 'Edit' | translate }}"
+              (isClicked)="editConfigurationsData()"
+            >
+            </app-open-dialog-button>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="configurationsForm">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="author">
+                  <div class="image__container">
+                    <input
+                      type="file"
+                      #filePicker
+                      (change)="onImagePicked($event)"
+                    />
+                  </div>
+                  <div class="image-preview">
+                    <ng-container>
+                      <a
+                        class="before__upload__container"
+                        (click)="filePicker.click()"
+                      >
+                        <img
+                          img-cache
+                          img-cache-src="{{ imagePreview }}"
+                          class="avatar border-gray"
+                        />
+                      </a>
+                    </ng-container>
+                  </div>
+                </div>
+                <div class="title-config">
+                  <h6>Bank Account Info</h6>
+                </div>
+                <div class="form-group">
+                  <label>Account Name </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="account_name"
+                    placeholder="Account Name"
+                  />
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Account Number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="account_number"
+                    placeholder="Account Number"
+                  />
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="bank_name">Bank name</label>
+                  <input
+                    name="email"
+                    id="bank_name"
+                    type="email"
+                    formControlName="bank_name"
+                    class="form-control"
+                    placeholder="Bank Name"
+                  />
+                </div>
+              </div>
+            </div>
+            <hr class="divider" />
+            <div class="title-config">
+              <h6>Account Info</h6>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Maximum wallet</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="maximum_wallet"
+                    placeholder="Maximum Wallet"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>Fine cost</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="fine_cost"
+                    placeholder="Fine Cost"
+                  />
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Precantage</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="percentage"
+                    placeholder="Percentage"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Support Number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Support Number"
+                    formControlName="support_number"
+                  />
+                </div>
+              </div>
+            </div>
+            <ng-container *ngIf="isEdit">
+              <app-open-dialog-button
+                isDisabled="needToUpdate"
+                name="{{ 'Save' | translate }}"
+                (isClicked)="onSubmit()"
+              >
+              </app-open-dialog-button>
+            </ng-container>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

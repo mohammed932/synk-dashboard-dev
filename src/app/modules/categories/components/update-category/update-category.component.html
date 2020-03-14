@@ -1,0 +1,23 @@
+<div class="dialog">
+  <div class="dialog__header">
+    <div class="title">
+      <h4>{{ "Update category" | translate }}</h4>
+    </div>
+  </div>
+  <form [formGroup]="updateCategory" (ngSubmit)="sendUpdatedCategory()">
+    <div class="form-group">
+      <label for="name">{{ "name" | translate }}</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        id="name"
+        [placeholder]="'name' | translate"
+      />
+    </div>
+    <app-savebutton
+      [loading]="loading"
+      name="{{ 'save' | translate }}"
+    ></app-savebutton>
+  </form>
+</div>

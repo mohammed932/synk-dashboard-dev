@@ -1,0 +1,26 @@
+@import "../../../assets/scss/now-ui-dashboard/variables";
+
+
+::ng-deep {
+
+  mat-header-cell {
+    &:nth-of-type(5) {
+      justify-content: center;
+
+    }
+    &:first-of-type {
+      max-width: 100px;
+    }
+  }
+  mat-cell {
+    &:first-of-type {
+      max-width: 100px;
+    }
+    &:nth-of-type(4) {
+      overflow: visible;
+    }
+    &:nth-of-type(5) {
+      justify-content: center;
+    }
+  }
+}

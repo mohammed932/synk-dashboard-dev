@@ -1,0 +1,96 @@
+<div class="panel-header panel-header-sm"></div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card card-user">
+        <div class="card-header">
+          <div class="card-title-container">
+            <h5 class="card-title">{{ "Configurations" | translate }}</h5>
+          </div>
+          <div class="card-action">
+            <app-open-dialog-button
+              isDisabled="sss"
+              name="{{ 'Edit' | translate }}"
+              (isClicked)="editConfigurationsData()"
+            >
+            </app-open-dialog-button>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="configurationsForm">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="author">
+                </div>
+                <div class="title-config">
+                  <h6>Bank Account Info</h6>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Account Number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="account_number"
+                    placeholder="Account Number"
+                  />
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="bank_name">Bank name</label>
+                  <input
+                    name="email"
+                    id="bank_name"
+                    type="email"
+                    formControlName="bank_name"
+                    class="form-control"
+                    placeholder="Bank Name"
+                  />
+                </div>
+              </div>
+            </div>
+            <hr class="divider" />
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Support Number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Support Number"
+                    formControlName="support_number"
+                  />
+                </div>
+              </div>
+            </div>
+            <hr class="divider" />
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Synk Percentage</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Synk Percentage"
+                    formControlName="synk_percentage"
+                  />
+                </div>
+              </div>
+            </div>
+            <ng-container *ngIf="isEdit">
+              <app-open-dialog-button
+                isDisabled="needToUpdate"
+                name="{{ 'Save' | translate }}"
+                (isClicked)="onSubmit()"
+              >
+              </app-open-dialog-button>
+            </ng-container>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

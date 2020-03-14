@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  synk-dash:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: synk-dash
+    container_name: synk-dash
+    ports:
+      - 3002:3000
+    restart: unless-stopped
+    environment:
+      VIRTUAL_HOST: dash.synkmylife.com
+      VIRTUAL_PORT: 3002
+      LETSENCRYPT_HOST: dash.synkmylife.com
+      LETSENCRYPT_EMAIL: mfarhat437@gmail.com
+networks:
+  default:
+    external:
+      name: nginx-proxy

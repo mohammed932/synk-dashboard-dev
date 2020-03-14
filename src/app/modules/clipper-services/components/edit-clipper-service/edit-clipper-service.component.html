@@ -1,0 +1,34 @@
+<div class="dialog">
+  <div class="dialog__header">
+    <div class="title">
+      <h4>{{ 'edit_city' | translate}}</h4>
+    </div>
+  </div>
+  <form [formGroup]="createNewClipperServiceForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">{{ 'name' | translate}}</label>
+      <input type="text" class="form-control" formControlName="name" id="name" placeholder="'name' | translate">
+    </div>
+    <div class="form-group">
+      <label for="arabic_name">{{ 'name_ar' | translate}}</label>
+      <input type="text" class="form-control" id="arabic_name" formControlName="name_ar"
+        [placeholder]="'name_ar' | translate">
+    </div>
+    <div class="image__container">
+      <input type="file" #filePicker (change)="onImagePicked($event)">
+    </div>
+    <div class="image-preview">
+      <ng-container>
+        <a class="before__upload__container" (click)="filePicker.click()">
+          <div class="before__preview" *ngIf="!imagePreview">
+            <mat-icon>add_a_photo</mat-icon>
+          </div>
+          <ng-container *ngIf="imagePreview !== '' && imagePreview && createNewClipperServiceForm.get('image').valid">
+            <img [src]="imagePreview">
+          </ng-container>
+        </a>
+      </ng-container>
+    </div>
+    <app-savebutton [loading]="loading" name="{{ 'save' | translate}}"></app-savebutton>
+  </form>
+</div>

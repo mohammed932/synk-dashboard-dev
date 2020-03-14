@@ -1,0 +1,42 @@
+<div class="dialog">
+  <div class="dialog__header">
+    <ng-container *ngIf="!changeTitle">
+      <div class="title">
+        <h4>{{ 'addnewservice' | translate}}</h4>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="changeTitle">
+      <div class="title">
+        <h4>{{ 'addanotherservice' | translate}}</h4>
+      </div>
+    </ng-container>
+  </div>
+  <form [formGroup]="createNewClipperServiceForm">
+    <div class="form-group">
+      <label for="name">{{ 'name' | translate}}</label>
+      <input type="text" class="form-control" formControlName="name" id="name" [placeholder]="'name' | translate">
+    </div>
+    <div class="form-group">
+      <label for="arabic_name">{{ 'name_ar' | translate}}</label>
+      <input type="text" class="form-control" id="arabic_name" formControlName="name_ar" [placeholder]="'name_ar' | translate">
+    </div>
+    <div class="image__container">
+      <input type="file" #filePicker (change)="onImagePicked($event)">
+    </div>
+    <div class="image-preview">
+      <ng-container>
+        <a class="before__upload__container" (click)="filePicker.click()">
+          <div class="before__preview" *ngIf="!imagePreview">
+            <mat-icon>add_a_photo</mat-icon>
+          </div>
+          <ng-container *ngIf="imagePreview !== '' && imagePreview && createNewClipperServiceForm.get('image').valid">
+            <img [src]="imagePreview">
+          </ng-container>
+        </a>
+      </ng-container>
+    </div>
+  </form>
+</div>
+<app-open-dialog-button [loading]="loading" isDisabled="no" (isClicked)="onSubmit()" name="{{ 'save' | translate}}"></app-open-dialog-button>
+<!-- <app-open-dialog-button [loading]="loading" isDisabled="no" (isClicked)="onSubmit()" name="{{ 'save' | translate}}"></app-open-dialog-button> -->
+<app-open-dialog-button [loading]="loading" isDisabled="no" (isClicked)="saveAndCreateAnotherOne()" name="{{ 'S&C Another One' | translate}}"></app-open-dialog-button>

@@ -1,0 +1,56 @@
+<div class="panel-header panel-header-sm"></div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="card card-user">
+      <div class="card-header">
+        <div class="card-title-container">
+          <h5 class="card-title">{{ "Top 3 Activities" | translate }}</h5>
+        </div>
+      </div>
+      <div  style="display: flex;  " *ngFor="let product of products.top_3_events">
+        <div class="title">
+          <b style="color: red;">Activity Name : </b>{{product.title}}<br>
+          <b style="color: red;">Owner : </b>{{product.user.name}}
+          <br>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card card-user">
+      <div class="card-header">
+        <div class="card-title-container">
+          <h5 class="card-title">{{ "Top 3 Synkers" | translate }}</h5>
+        </div>
+      </div>
+      <div style="display: flex;  " *ngFor="let synker of products.top_3_synkers">
+        <div class="title">
+          <b style="color: red;">Name : </b>{{synker.name}}<br>
+          <b style="color: red;">Email : </b> {{synker.email}}
+          <br>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card card-user">
+      <div class="card-header">
+        <div class="card-title-container">
+          <h5 class="card-title">{{ "Top 3 Publishers" | translate }}</h5>
+        </div>
+      </div>
+      <div style="display: flex; " *ngFor="let publisher of products.top_3_publishers">
+        <div class="title">
+          <b style="color: red;">Name : </b> {{publisher._id}}<br>
+          <b style="color: red;">Activities Count : </b>{{publisher.count}}
+          <br>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
