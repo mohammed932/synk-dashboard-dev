@@ -5,12 +5,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 
-  [dir="rtl"] & {
+  [dir=rtl] & {
     text-align: right;
     direction: rtl;
-    font-family: "Cairo", sans-serif !important;
+    font-family: 'Cairo', sans-serif !important;
   }
 }
+
 
 .main {
   position: relative;
@@ -53,7 +54,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
   border-radius: 1px;
   background: $white-bg;
 
-  & + .button-bar {
+  &+.button-bar {
     margin-top: 7px;
   }
 

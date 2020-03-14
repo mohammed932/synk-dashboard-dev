@@ -18,33 +18,37 @@ export const routes: Routes = [
       },
       {
         path: "wallets",
-        loadChildren: "./modules/promotions/promotions.module#PromotionsModule"
-      },
-      {
+        loadChildren:
+          "./modules/promotions/promotions.module#PromotionsModule",
+      }, {
         path: "analytics",
-        loadChildren: "./modules/products/products.module#ProductsModule"
+        loadChildren:
+          "./modules/products/products.module#ProductsModule",
       },
       {
         path: "configurations",
-        loadChildren: "./modules/delivery/delivery.module#DeliveryModule"
+        loadChildren:
+          "./modules/delivery/delivery.module#DeliveryModule",
       },
       {
         path: "posts",
-        loadChildren: "./modules/posts/posts.module#PostsModule"
+        loadChildren:
+          "./modules/posts/posts.module#PostsModule",
       },
 
       {
         path: "admins",
-        loadChildren: "./modules/users/admin/admin.module#AdminModule"
-      },
-      {
+        loadChildren:
+          "./modules/users/admin/admin.module#AdminModule",
+      }, {
         path: "events",
-        loadChildren: "./modules/orders/orders.module#OrdersModule",
-        canActivate: [CanActivateAdminGuard]
+        loadChildren:
+          "./modules/orders/orders.module#OrdersModule"
       },
       {
         path: "offers",
-        loadChildren: "./modules/offers/offers.module#OffersModule",
+        loadChildren:
+          "./modules/offers/offers.module#OffersModule",
         canActivate: [CanActivateAdminGuard]
       },
       {
@@ -55,8 +59,7 @@ export const routes: Routes = [
       },
       {
         path: "users",
-        loadChildren:
-          "./modules/users/customers/customers.module#CustomersModule"
+        loadChildren: "./modules/users/customers/customers.module#CustomersModule",
       },
       {
         path: "complaints",
@@ -66,8 +69,7 @@ export const routes: Routes = [
   },
   {
     path: "auth",
-    loadChildren: "./modules/auth/auth.module#AuthModule",
-    canActivate: [CanActivateLoginGuard]
+    loadChildren: "./modules/auth/auth.module#AuthModule"
   }
 ];
 
@@ -75,4 +77,4 @@ export const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

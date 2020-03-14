@@ -3,6 +3,7 @@ import { LocalizeRouterService } from "localize-router";
 import { TranslateService } from "@ngx-translate/core";
 import { Subject, Observable } from "rxjs";
 import { Router, NavigationEnd } from "@angular/router";
+import { filter } from "rxjs/internal/operators/filter";
 import { Location } from "@angular/common";
 @Injectable({
   providedIn: "root"
@@ -16,10 +17,7 @@ export class LanguageService {
     private translateService: TranslateService,
     private _router: Router,
     private location: Location
-  ) {
-    this.localizeRouterService.changeLanguage("ar");
-    this.initAppUrl();
-  }
+  ) {}
 
   changeAppLanguage(local: string) {
     this.lastLocale = local;
@@ -33,16 +31,24 @@ export class LanguageService {
       : document.getElementsByTagName("html")[0].setAttribute("dir", "rtl");
   }
   setAppLocalizations(lang: string) {
-    this.localizeRouterService.changeLanguage(lang);
+    this.translateService.setDefaultLang(lang);
     this.translateService.use(lang);
+    this.localizeRouterService.changeLanguage(lang);
   }
 
   initAppUrl() {
-    const currentLanaguage =
-      localStorage.getItem("LOCALIZE_DEFAULT_LANGUAGE") || "ar";
-    console.log("current langue", currentLanaguage);
+    const token = localStorage.getItem("clipperToken");
+    const currentLanaguage = localStorage.getItem("LOCALIZE_DEFAULT_LANGUAGE");
     const availableLanguages = ["en", "ar"];
     const urlLang = this.location.path().split("/")[1];
+    if (!token) {
+      this.setAppLocalizations(currentLanaguage);
+      this.changeAppDirection(currentLanaguage);
+      this._router.navigateByUrl(`${currentLanaguage}/auth/login`, {
+        replaceUrl: true
+      });
+      return;
+    }
     if (availableLanguages.indexOf(urlLang) === -1) {
       this.setAppLocalizations(currentLanaguage);
       this.changeAppDirection(currentLanaguage);
@@ -56,29 +62,5 @@ export class LanguageService {
     this._router.navigateByUrl(this.location.path(), {
       replaceUrl: true
     });
-    // }
-
-    // initAppUrl() {
-    //     let currentLanaguage = 'ar';
-    //     const availableLanguages = ["ar", "en"];
-    //     const urlLang = this.location.path().split("/")[1];
-    //     console.log('console.log path', this.location.path())
-    //     if (availableLanguages.indexOf(urlLang) === -1) {
-    //         this._router.navigateByUrl(currentLanaguage + this.location.path(), {
-    //             replaceUrl: true
-    //         });
-    //         this.setAppLocalizations(currentLanaguage);
-    //         this.changeAppDirection(currentLanaguage);
-    //         localStorage.setItem('notFirstTime', 'yes');
-
-    //         return;
-    //     }
-    //     this.setAppLocalizations(currentLanaguage);
-    //     this.changeAppDirection(currentLanaguage);
-    //     localStorage.setItem('notFirstTime', 'yes');
-    //     this._router.navigateByUrl(this.location.path(), {
-    //         replaceUrl: true
-    //     });
-    // }
   }
 }

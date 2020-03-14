@@ -1,19 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "./assets/scss/now-ui-dashboard/variables";
+
+@import './assets/scss/now-ui-dashboard/variables';
 
 :host {
   .mat-paginator-container {
+    [dir="rtl"] & {
+      justify-content: flex-start;
+    }
   }
 }
 
 ::ng-deep {
   .mat-icon-button {
-    .mat-button-wrapper > * {
+    .mat-button-wrapper>* {
       color: red;
     }
   }
+
+
+
 }
+
 
 @media screen and (max-width: 676px) {
   .cdk-overlay-pane {
